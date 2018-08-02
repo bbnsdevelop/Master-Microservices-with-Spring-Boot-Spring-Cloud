@@ -3,12 +3,13 @@ package br.com.restfulwebservice.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Component;
 
 import br.com.restfulwebservice.entities.User;
+import br.com.restfulwebservice.service.businessException.UserNotFoundException;
 
 @Component
 public class UserDaoService {
@@ -41,9 +42,13 @@ public class UserDaoService {
 	}
 	public User findOne(int id) {
 		log.info("find user by id {}", id);
+		this.user = null;
 		users.stream().filter(u -> u.getId() == id).forEach(u ->{
 			this.user = new User(u.getId(), u.getName(), u.getBirthDate());
 		});
-		return user;
+		if(this.user == null){
+			throw new UserNotFoundException("id - " + id);
+		}
+		return this.user;
 	}
 }
