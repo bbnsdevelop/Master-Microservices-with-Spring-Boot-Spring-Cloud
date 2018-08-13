@@ -2,6 +2,7 @@ package br.com.restfulwebservice.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -50,5 +51,18 @@ public class UserDaoService {
 			throw new UserNotFoundException("id - " + id);
 		}
 		return this.user;
+	}
+
+	public User deleteById(int id) {
+		Iterator<User> iterator = users.iterator();
+		while(iterator.hasNext()){
+			User user = iterator.next();
+			if(user.getId() == id){
+				iterator.remove();
+				return user;
+			}			
+		}
+		throw new UserNotFoundException("id não encontrado: "+ id);
+		
 	}
 }
