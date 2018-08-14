@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,5 +46,15 @@ public class UserResource {
 	@DeleteMapping("/user/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable("id") int id){
 		return ResponseEntity.status(HttpStatus.OK).body(service.deleteById(id));
+	}
+	
+	@GetMapping("/users/{id}")
+	public ResponseEntity<User> findByIdHateoas(@PathVariable("id") int id){
+		
+		User user = service.findOne(id);
+		Resource<User> resource = new Resource<User>(user);
+		
+		ControllerLinkBuilder.linkTo(controller)
+		return ResponseEntity.status(HttpStatus.OK).body(service.findOne(id));
 	}
 }
