@@ -15,35 +15,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.restfulwebservice.entities.Post;
 import br.com.restfulwebservice.entities.User;
 import br.com.restfulwebservice.service.UserDaoService;
 
 @RestController
 @RequestMapping("/api")
-public class UserResource {
+public class UserJPAResource {
 
 	
 	@Autowired
 	private UserDaoService service;
 	
-	@GetMapping("/user")
+	@GetMapping("/jpa/user")
 	public ResponseEntity<List<User>> findAll(){
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findAllRepository());
 	}
 	
-	@GetMapping("/user/{id}")
+	@GetMapping("/jpa/user/{id}")
 	public ResponseEntity<User> findById(@PathVariable("id") int id){
-		return ResponseEntity.status(HttpStatus.OK).body(service.findOne(id));
+		return ResponseEntity.status(HttpStatus.OK).body(service.findOneRepository(id));
 	}
 	
-	@PostMapping("/user")
+	@PostMapping("/jpa/user")
 	public ResponseEntity<User> save(@Valid @RequestBody User user){
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(user));
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.saveRepository(user));
 	}
 	
-	@DeleteMapping("/user/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable("id") int id){
-		return ResponseEntity.status(HttpStatus.OK).body(service.deleteById(id));
+	@DeleteMapping("/jpa/user/{id}")
+	public ResponseEntity<Void> deleteUser(@PathVariable("id") int id){
+		service.deleteByIdRepository(id);
+		return ResponseEntity.status(HttpStatus.OK).build();
+	}
+	@GetMapping("/jpa/user/{id}/posts")
+	public ResponseEntity<List<Post>> save(@PathVariable("id") int id){
+		return ResponseEntity.status(HttpStatus.OK).body(service.findPostByUserId(id));
+	}
+	@PostMapping("/jpa/user/{id}/post")
+	public ResponseEntity<Post> savePost(@Valid @RequestBody Post post, @PathVariable("id") int id){
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.savePostRepository(post, id));
 	}
 	
 }
