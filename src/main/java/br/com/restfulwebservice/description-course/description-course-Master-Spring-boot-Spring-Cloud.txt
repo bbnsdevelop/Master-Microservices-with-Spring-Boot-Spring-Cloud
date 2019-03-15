@@ -1,0 +1,9 @@
+
+
+Três vantagens de usar micro serviços
+
+1 - À adoçao de novas tecnologias
+2 - Processo de escalonamento dinâmico
+3 - Entrega de release ou Ciclos mais rápidos
+ 
+
