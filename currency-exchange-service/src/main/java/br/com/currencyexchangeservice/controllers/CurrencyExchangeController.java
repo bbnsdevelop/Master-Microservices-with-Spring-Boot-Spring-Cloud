@@ -9,18 +9,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.currencyexchangeservice.entity.exchange.ExchangeValue;
+import br.com.currencyexchangeservice.service.ExchangeValueService;
 
 
 @RestController
 public class CurrencyExchangeController {
 	
+	
+	
 	@Autowired
-	private Environment environment;
+	private ExchangeValueService exchangeValueService;
 
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
 	public ExchangeValue retriveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to ) {		
-		ExchangeValue exchangeValue = new ExchangeValue(1000L, from, to, BigDecimal.valueOf(65));
-		exchangeValue.setPort(Integer.parseInt(this.environment.getProperty("local.server.port")));
-		return exchangeValue;
+		
+		return this.exchangeValueService.exchangeValue(from, to);
 	}
 }
