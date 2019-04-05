@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.currencyexchangeservice.controllers.exchange.ExchangeValue;
+import br.com.currencyexchangeservice.entity.exchange.ExchangeValue;
+
 
 @RestController
 public class CurrencyExchangeController {
