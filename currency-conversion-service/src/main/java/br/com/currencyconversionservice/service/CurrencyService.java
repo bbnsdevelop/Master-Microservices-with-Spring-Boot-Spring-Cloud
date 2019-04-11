@@ -8,4 +8,6 @@ public interface CurrencyService {
 	
 	CurrencyConversionBean convert(String from, String to, BigDecimal qtd);
 
+	CurrencyConversionBean convertFeign(String from, String to, BigDecimal qtd);
+
 }

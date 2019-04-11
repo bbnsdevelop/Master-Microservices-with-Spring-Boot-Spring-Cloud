@@ -22,6 +22,12 @@ public class CurrencyConversionController {
 		
 		return this.currencyService.convert(from, to, qtd);
 	}
+	@GetMapping("currency-converter-feign/from/{from}/to/{to}/quantity/{qtd}")
+	public CurrencyConversionBean convertCurrencyFeign(@PathVariable("from") String from, @PathVariable("to") String to, 
+			@PathVariable("qtd") BigDecimal qtd) {
+		
+		return this.currencyService.convertFeign(from, to, qtd);
+	}
 	
 
 }
