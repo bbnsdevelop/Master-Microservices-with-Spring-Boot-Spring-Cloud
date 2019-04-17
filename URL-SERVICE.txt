@@ -1,3 +1,9 @@
+
+restful-web-service
+
+swagger-ui
+http://localhost:8080/swagger-ui.html#
+
 Data base in memory
 
 http://localhost:8000/h2-console/login.do?jsessionid=c4588ccbf74d2a21a0d70dfa5d9e9aa2

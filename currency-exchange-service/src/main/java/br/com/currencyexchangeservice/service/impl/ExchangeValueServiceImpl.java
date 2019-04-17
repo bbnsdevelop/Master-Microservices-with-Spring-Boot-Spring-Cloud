@@ -25,7 +25,7 @@ public class ExchangeValueServiceImpl implements ExchangeValueService {
 	public ExchangeValue exchangeValue(String from, String to) {		
 		ExchangeValue exchangeValue = this.exchangeValueRepository.findByFromAndTo(from, to);
 		exchangeValue.setPort(Integer.parseInt(this.environment.getProperty("local.server.port")));
-		logger.info("exchange value -> {}", exchangeValue.toString());
+		logger.info("exchange value -> {}", exchangeValue);
 		return exchangeValue;
 	}
 	
