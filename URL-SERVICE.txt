@@ -32,3 +32,15 @@ netflix-zuul-api-gateway-server
 
 http://localhost:8765/currency-exchange-service/currency-exchange/from/USD/to/INR
 http://localhost:8765/currency-conversion-service/currency-converter-feign/from/EUR/to/INR/quantity/1000
+
+rabbitMQ
+sudo docker run -d --network host --hostname rabbit-mq --name rabbit-mq  rabbitmq:3-management
+
+http://localhost:15672/#/
+
+ZIPKIN
+docker run -d -p 9411:9411 openzipkin/zipkin
+
+http://localhost:9411/zipkin/
+
+
