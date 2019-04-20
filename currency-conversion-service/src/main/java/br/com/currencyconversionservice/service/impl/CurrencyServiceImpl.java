@@ -1,7 +1,9 @@
 package br.com.currencyconversionservice.service.impl;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import br.com.currencyconversionservice.controllers.beans.CurrencyConversionBean;
 import br.com.currencyconversionservice.service.CurrencyService;
 import br.com.currencyconversionservice.service.feign.CurrencyExchangeServiceProxy;
+import br.com.currencyconversionservice.service.feign.ExchangeValue;
 
 @Service
 public class CurrencyServiceImpl implements CurrencyService{
@@ -42,6 +45,14 @@ public class CurrencyServiceImpl implements CurrencyService{
 		CurrencyConversionBean respose = this.proxy.retriveExchangeValue(from, to);
 		
 		return new CurrencyConversionBean(respose.getId(), from, to, respose.getConversionMultiple(), qtd, qtd.multiply(respose.getConversionMultiple()), respose.getPort());
+	}
+
+	@Override
+	public List<ExchangeValue> getAllconvertFeign() {		
+		log.info("calling with feign currency-exchange-service method allExchangeValue");
+		List<ExchangeValue> response = this.proxy.getAllCurrency();		
+		return response;
+		
 	}
 
 }

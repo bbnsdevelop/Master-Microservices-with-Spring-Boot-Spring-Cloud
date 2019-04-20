@@ -1,0 +1,53 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<h2>Here are response of api-gateway server </h2>
+<form [formGroup]="forms" (ngSubmit)="callServiceGateway()">
+  <select class="form-control" id="from" formControlName="from" style="width: 14%">
+              <option *ngFor="let from of allFromAndTo" [value]="from.from">{{from.from}}</option>
+            </select>
+              <span class="help-block" *ngIf="forms.get('from').invalid && forms.get('from').dirty">
+                From is riquired</span>
+      <br />
+      <br />
+      <select class="form-control" id="to" formControlName="to" style="width: 14%">
+          <option *ngFor="let to of allFromAndTo" [value]="to.to">{{to.to}}</option>
+        </select>
+          <span class="help-block" *ngIf="forms.get('to').invalid && forms.get('to').dirty">
+            To is riquired</span>
+      <br />
+      <br />
+  <input type="text" id="from" formControlName="qtd" placeholder="Quantity">
+      <span class="help-block" *ngIf="forms.get('qtd').invalid && forms.get('qtd').dirty">
+        Quantity is riquired
+      </span>
+      <br />
+      <br />
+    <button type="submit" [disabled]="!forms.valid">search</button>
+</form>
+<br />
+<br />
+<table *ngIf="response">
+  <tr>
+    <th>id</th>
+    <th>from</th>
+    <th>to</th>
+    <th>conversion Multiple</th>
+    <th>quantity</th>
+    <th>total Calculated Amount</th>
+    <th>port</th>
+  </tr>
+  <tr>
+    <td>{{ response.id }}</td>
+    <td>{{ response.from }}</td>
+    <td>{{ response.to }}</td>
+    <td>{{ response.conversionMultiple }}</td>
+    <td>{{ response.quantity }}</td>
+    <td>{{ response.totalCalculatedAmount }}</td>
+    <td>{{ response.port }}</td>
+  </tr>
+
+</table>
