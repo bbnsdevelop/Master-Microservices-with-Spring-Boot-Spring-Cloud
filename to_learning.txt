@@ -1,0 +1,2 @@
+https://grokonez.com/
+https://howtodoinjava.com/spring-boot/spring-soap-client-webservicetemplate/
