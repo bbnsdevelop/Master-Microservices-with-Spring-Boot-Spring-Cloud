@@ -81,5 +81,54 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<repositories>
+		<repository>
+			<id>repo</id>
+			<name>artifactory</name>
+			<url>http://artifactory.visanet.corp/artifactory/repo</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>libs-release</name>
+			<url>http://artifactory.visanet.corp/artifactory/libs-release</url>
+		</repository>
+		<repository>
+			<snapshots />
+			<id>snapshots</id>
+			<name>libs-snapshot</name>
+			<url>http://artifactory.visanet.corp/artifactory/libs-snapshot</url>
+		</repository>
+		<repository>
+			<id>eclipselink</id>
+			<name>cieltvtrev-eclipselink</name>
+			<url>http://artifactory.visanet.corp/artifactory/EclipseLink</url>
+		</repository>
+		<repository>
+			<id>forgerock</id>
+			<name>cieltvtrev-forgerock</name>
+			<url>http://artifactory.visanet.corp/artifactory/forgerock</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>plugins-release</name>
+			<url>http://artifactory.visanet.corp/artifactory/plugins-release</url>
+		</pluginRepository>
+		<pluginRepository>
+			<snapshots />
+			<id>snapshots</id>
+			<name>plugins-snapshot</name>
+			<url>http://artifactory.visanet.corp/artifactory/plugins-snapshot</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
 
 </project>
